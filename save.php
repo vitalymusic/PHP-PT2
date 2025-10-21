@@ -8,6 +8,8 @@
     $login = "administrator";
     $pass = "Qwerty12345";
 
+
+
     if($username == $login && sha1($password) === sha1($pass)){
         echo json_encode(["login"=>"success"]);
 
@@ -15,7 +17,7 @@
          echo json_encode(["login"=>"false","error"=>"User is Invalid"]);
     }
 
-    // echo json_encode($_POST, JSON_UNESCAPED_UNICODE);
+    echo json_encode($_POST, JSON_UNESCAPED_UNICODE);
 
 
 ?>
