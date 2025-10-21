@@ -1,6 +1,6 @@
-<nav>
-    <a href="index.php?page=sec1">Saite 1</a>
-    <a href="index.php?page=sec2">Saite 2</a>
-    <a href="index.php?page=sec3">Saite 3</a>
-    <a href="index.php?page=sec4">Saite 4</a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <a href="index.php?page=sec1" class="<?=$_GET["page"]=="sec1"?"active":""?>">Saite 1</a>
+    <a href="index.php?page=sec2" class="<?=$_GET["page"]=="sec2"?"active":""?>">Saite 2</a>
+    <a href="index.php?page=sec3" class="<?=$_GET["page"]=="sec3"?"active":""?>">Saite 3</a>
+    <a href="index.php?page=sec4" class="<?=$_GET["page"]=="sec4"?"active":""?>">Saite 4</a>
 </nav>
