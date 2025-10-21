@@ -1,3 +1,5 @@
+<?php session_start()?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +10,16 @@
 <body>
       <h1>ielogoties</h1>  
 
-      <form action="">
+      <form action="save.php" method="POST">
             <input type="text" name="username" id="">
             <input type="password" name="password" id="">
+
+            <button type="submit">Login</button>
       </form>
+
+      <?php if($_SESSION["error"]):?>
+            <div class="alert"><?=$_SESSION["error"]?></div>
+      <?php endif?>  
+      
 </body>
 </html>
