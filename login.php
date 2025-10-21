@@ -21,7 +21,7 @@
         var_dump($_SESSION);
       
       ?>
-      <?php if($_SESSION["error"]):?>
+      <?php if(isset($_SESSION["error"])):?>
             <div class="alert"><?=$_SESSION["error"]?></div>
       <?php endif?>  
 
