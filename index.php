@@ -7,7 +7,10 @@
 ?>
     <?php require_once("./head.php");?>
     <?php 
-    if(isset($_GET["page"])){
+
+    if(!isset($_GET["page"])){
+        header("location:?page=sec1");
+    }
 
     if($_GET["page"]=="sec1"):?>
         <div class="container">
@@ -36,13 +39,6 @@
     <?php else:?>
          <h1>Lapa nav atrasta</h1>
     <?php endif; 
-
-     }else{
-         echo "<h1>Lapa1</h1>";
-     }
-    
-    // Get vaicājums un GET parametri 
-    
     ?>
 
 

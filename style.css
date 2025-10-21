@@ -1,3 +1,9 @@
+nav{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    
+}
 .active{
     font-weight: bolder !important;
 }
