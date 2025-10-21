@@ -22,5 +22,8 @@
 ?>
 <body class="<?=$theme?>"> 
     <?php include("./nav.php") ?>
-    <a href="theme.php?theme=dark">Dark theme</a>
-    <a href="theme.php">Light theme</a>
+    <?php if($_COOKIE["theme"]=="dark"):?>
+         <a href="theme.php">Light theme</a>
+    <?php else:?>
+        <a href="theme.php?theme=dark">Dark theme</a>
+    <?php endif ?>
