@@ -17,9 +17,13 @@
             <button type="submit">Login</button>
       </form>
 
+      <?php 
+        var_dump($_SESSION);
+      
+      ?>
       <?php if($_SESSION["error"]):?>
             <div class="alert"><?=$_SESSION["error"]?></div>
       <?php endif?>  
-      
+
 </body>
 </html>
