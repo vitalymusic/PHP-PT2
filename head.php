@@ -12,5 +12,15 @@
     <title><?=$title?></title>
 </head>
 
-<body> 
+<?php 
+
+
+    $theme = $_COOKIE["theme"];
+
+
+
+?>
+<body class="<?=$theme?>"> 
     <?php include("./nav.php") ?>
+    <a href="theme.php?theme=dark">Dark theme</a>
+    <a href="theme.php">Light theme</a>

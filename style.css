@@ -7,3 +7,15 @@ nav{
 .active{
     font-weight: bolder !important;
 }
+
+
+.light{
+    background-color: beige;
+    color: black;
+}
+
+
+.dark{
+    background-color: black;
+    color:aliceblue
+}
