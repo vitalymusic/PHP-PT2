@@ -62,3 +62,25 @@ if ($result->num_rows > 0) {
     </div>
 </div>
 <!-- Modal -->
+
+<script>
+    // Saglabāt modāla dialoga datus un nosūtīt ar Fetch;
+
+    
+    let addPostModal = new bootstrap.Modal('#addPostModal');
+    let addPostForm = document.querySelector('#addPostModal form');
+    let savePostBtn = document.querySelector('#savePostBtn');
+
+
+    savePostBtn.onclick = ()=>{
+          fetch('functions.php?action=savePost',{
+            method:"POST",
+            body: new FormData(addPostForm)
+          }).then(()=>{
+                addPostForm.reset();
+                addPostModal.hide();
+          })  
+    }
+
+
+</script>
