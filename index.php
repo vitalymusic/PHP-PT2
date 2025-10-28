@@ -33,8 +33,17 @@
         </div>
        
 
+      <?php elseif($_GET["page"]=="sec3"):?>
 
-    <?php elseif($_GET["page"]=="sec3"): ?>
+        <div class="container">
+                <h1>Raksti</h1>
+                <div class="row">
+                      <?php  require_once("./posts.php");?>  
+                </div>
+        </div>
+        
+
+    <?php elseif($_GET["page"]=="sec4"): ?>
           <h1>Lapa3</h1>
     <?php else:?>
          <h1>Lapa nav atrasta</h1>
