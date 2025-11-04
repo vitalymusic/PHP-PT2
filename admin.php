@@ -49,11 +49,11 @@ include_once("./functions.php");
             </tr>
             <?php
             $result = get_posts();
-            $data = [];
+            // $data = [];
             $numurs = 0;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()): ?>
-                    <?php $data[] = $row; ?>
+                    <?php //$data[] = $row; ?>
                     <tr class="post_div">
                         <?php $numurs++?>
                         <td><?=$numurs ?></td>
@@ -62,8 +62,6 @@ include_once("./functions.php");
                     </tr> 
                 <?php endwhile;
             }
-
-
             ?>
 
         </table>
@@ -71,7 +69,20 @@ include_once("./functions.php");
 
     </div>
 
+       <script>
+            $(".postDeleteBtn").on('click',(e)=>{
+                if(confirm("Tiešām izdzēst?")){
+                     let postId = e.target.dataset.postid;
+                    $.get('./functions.php?action=delete&id='+postId,(resp)=>{
+                        
+                }).then(()=>{
+                    window.location.reload();
+                })  
+                } 
+            })
 
+
+       </script>     
 </body>
 
 </html>

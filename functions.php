@@ -40,7 +40,27 @@ if(isset($_GET["action"])){
         
     };
 
-    $mysqli->close();
+    // Idzēšana
+
+    if($_GET["action"]=="delete" ){
+        $postID = $conn->real_escape_string(($_GET["id"]));
+
+        $sql = "DELETE FROM `posts` WHERE id='{$postID}'";
+
+        if($conn->query($sql)){
+                echo "success";
+        }else{
+            echo $conn->error;
+        }
+
+
+    }
+
+
+
+
+
+
 }
 
 
