@@ -32,13 +32,14 @@ if(isset($_GET["action"])){
 
         if($result){
             echo json_encode(array("status"=> "success"));
+            
         }else{
             echo $stmt->error;
         }
         $stmt->close();
         
     };
-    
+
     $mysqli->close();
 }
 

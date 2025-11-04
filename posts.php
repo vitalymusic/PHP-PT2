@@ -93,6 +93,9 @@ if ($result->num_rows > 0) {
           }).then(()=>{
                 addPostForm.reset();
                 addPostModal.hide();
+
+          }).then(()=>{
+            location.reload();
           })  
     }
 
