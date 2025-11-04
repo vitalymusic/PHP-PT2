@@ -1,9 +1,8 @@
 <?php
-require_once("./db.php");
+require_once("./functions.php");
 
 
-$sql = "SELECT * FROM posts";
-$result = $conn->query($sql);
+$result = get_posts();
 
 // var_dump($result);
 $data = [];

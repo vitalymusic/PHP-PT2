@@ -32,7 +32,7 @@ if(isset($_GET["action"])){
 
         if($result){
             echo json_encode(array("status"=> "success"));
-            
+
         }else{
             echo $stmt->error;
         }
@@ -42,6 +42,23 @@ if(isset($_GET["action"])){
 
     $mysqli->close();
 }
+
+
+function get_posts(){
+    global $conn;
+
+    $sql = "SELECT * FROM posts";
+   return $conn->query($sql);
+}
+
+
+
+
+
+
+
+
+
 
 
 
