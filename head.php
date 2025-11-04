@@ -10,6 +10,15 @@
 
     <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   
+   <!-- SummerNote editor -->
+    <!-- include summernote css/js -->
+    <link href="./summernote/summernote.min.css" rel="stylesheet">
+    <script src="./summernote/summernote.min.js"></script>
+   
+   
+   
    <link rel="stylesheet" href="style.css" />
 
 
