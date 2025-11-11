@@ -45,6 +45,7 @@ include_once("./functions.php");
             <tr>
                 <th>Numurs</th>
                 <th>Nosaukums</th>
+                <th>Rediģēt</th>
                 <th>Izdzēst</th>
             </tr>
             <?php
@@ -58,6 +59,7 @@ include_once("./functions.php");
                         <?php $numurs++?>
                         <td><?=$numurs ?></td>
                         <td><?= $row["virsraksts"] ?></td>
+                        <td><button class="btn btn-secondary postEditBtn" data-postId="<?=$row["id"]?>">Rediģēt</button></td>
                         <td><button class="btn btn-danger postDeleteBtn" data-postId="<?=$row["id"]?>">Izdzēst</button></td>
                     </tr> 
                 <?php endwhile;
@@ -69,17 +71,56 @@ include_once("./functions.php");
 
     </div>
 
+
+    <!-- modal -->
+           <?php include_once("./modal.php")?>
+    <!-- modal -->
+
        <script>
             $(".postDeleteBtn").on('click',(e)=>{
                 if(confirm("Tiešām izdzēst?")){
                      let postId = e.target.dataset.postid;
                     $.get('./functions.php?action=delete&id='+postId,(resp)=>{
                         
-                }).then(()=>{
+                })
+                .then(()=>{
                     window.location.reload();
                 })  
                 } 
             })
+            // CRUD -> Create, Read,Update,Delete
+
+            $(document).ready(()=>{
+                $('#addPostModal').attr('id','editPostModal');
+                $('.modal-title').text('Rediģēt');
+                $('#savePostBtn').attr('id','updatePostBtn');
+
+
+
+               let editPostModal = new bootstrap.Modal('#editPostModal');
+                let addPostForm = document.querySelector('#addPostModal form');
+                let updatePostBtn = document.querySelector('#updatePostBtn');
+
+
+
+                   $(".postEditBtn").on('click',(e)=>{
+               
+                     let postId = e.target.dataset.postid;
+                    $.get('./functions.php?action=load&id='+postId,(resp)=>{ 
+                        // Servera atbilde ar formas datiem
+                        console.log(resp);
+
+                })
+                .then(()=>{
+
+
+                })  
+            })
+
+            });
+
+
+
 
 
        </script>     
