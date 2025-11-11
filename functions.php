@@ -40,6 +40,9 @@ if(isset($_GET["action"])){
         
     };
 
+
+
+
     // Idzēšana
 
     if($_GET["action"]=="delete" ){
@@ -57,8 +60,47 @@ if(isset($_GET["action"])){
     }
 
 
+    // Ielāde pēc id
+
+    if($_GET["action"]=="load" ){
+
+         $postID = $conn->real_escape_string(($_GET["id"]));
+         $sql = "SELECT * FROM posts WHERE id={$postID}";
+         $result = $conn->query($sql);
+
+         if($result){
+            echo json_encode($result->fetch_assoc(),JSON_UNESCAPED_UNICODE);
+         }else{
+            echo json_encode(["result"=>NULL]);
+         }
 
 
+    }
+
+
+    if($_GET["action"]=="updatePost" ){
+
+          $data = $_POST;
+
+            // UPDATE `posts` SET `virsraksts`='?',`saturs`='?' WHERE id=?
+
+        $stmt = $conn->prepare("UPDATE `posts` SET `virsraksts`=?,`saturs`=? WHERE id=?");
+        $stmt->bind_param('ssi', $data["postNameInput"],$data["postContentInput"],$data["id"]);
+        $result = $stmt->execute();
+
+
+
+         if($result){
+            echo json_encode(array("status"=> "success"));
+
+        }else{
+            echo $stmt->error;
+        }
+        $stmt->close();
+
+
+
+    }
 
 
 }

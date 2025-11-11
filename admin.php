@@ -27,6 +27,13 @@ include_once("./functions.php");
         integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+     <!-- SummerNote editor -->
+    <!-- include summernote css/js -->
+    <link href="./summernote/summernote.min.css" rel="stylesheet">
+    <script src="./summernote/summernote.min.js"></script>
+
+
     <title>Administrēšanas panelis</title>
 </head>
 
@@ -91,14 +98,24 @@ include_once("./functions.php");
             // CRUD -> Create, Read,Update,Delete
 
             $(document).ready(()=>{
+
+
                 $('#addPostModal').attr('id','editPostModal');
                 $('.modal-title').text('Rediģēt');
                 $('#savePostBtn').attr('id','updatePostBtn');
 
 
+                  $('#postContentInput').summernote();
+                    var noteBar = $('.note-toolbar');
+                    noteBar.find('[data-toggle]').each(function () {
+                        $(this).attr('data-bs-toggle', $(this).attr('data-toggle')).removeAttr('data-toggle');
+                    });
 
-               let editPostModal = new bootstrap.Modal('#editPostModal');
-                let addPostForm = document.querySelector('#addPostModal form');
+
+
+
+                let editPostModal = new bootstrap.Modal('#editPostModal');
+                let editPostForm = document.querySelector('#editPostModal form');
                 let updatePostBtn = document.querySelector('#updatePostBtn');
 
 
@@ -108,18 +125,41 @@ include_once("./functions.php");
                      let postId = e.target.dataset.postid;
                     $.get('./functions.php?action=load&id='+postId,(resp)=>{ 
                         // Servera atbilde ar formas datiem
-                        console.log(resp);
+                        return resp
+                })
+                .then((resp)=>{
+                    data = JSON.parse(resp); 
+                    $('#postNameInput').val(data.virsraksts);
+                    $('#postContentInput').val(data.saturs);
+                    $('#postNameInput').attr('data-postID',data.id);
+
+                    $('#postContentInput').summernote('reset');
+                    $('#postContentInput').summernote('pasteHTML', data.saturs);
 
                 })
                 .then(()=>{
-
-
+                    editPostModal.show();
                 })  
             })
+             updatePostBtn.onclick = ()=>{
+                data = new FormData(editPostForm);
+                id =  $('#postNameInput').attr('data-postID');
+                data.append('id', id);
+                fetch('functions.php?action=updatePost',{
+                    method:"POST",
+                    body: data
+                }).then(()=>{
+                        editPostForm.reset();
+                        editPostModal.hide();
 
+                }).then(()=>{
+                    location.reload();
+                })  
+    }
             });
 
 
+           
 
 
 
