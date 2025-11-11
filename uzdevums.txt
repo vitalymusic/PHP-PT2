@@ -1,0 +1,4 @@
+1. Jāizveido fotogalerija, kuras bildes ir saglabātas datubāzē (url, bilžu nosaukumi)
+2. Iespēja bildes pievienot caur formu caur Admin paneli
+3. Bildes tiek izvadītas lapā (<div class="slider"> .. </div>)
+4. Bilžu izvadei var izmantot arī kādu bibliotēku, piem "https://lokeshdhakar.com/projects/lightbox2/"

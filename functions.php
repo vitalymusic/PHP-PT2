@@ -73,8 +73,6 @@ if(isset($_GET["action"])){
          }else{
             echo json_encode(["result"=>NULL]);
          }
-
-
     }
 
 
