@@ -19,3 +19,17 @@ nav{
     background-color: black;
     color:aliceblue
 }
+
+.picture{
+    background-color: aliceblue;
+    padding: 10px;
+    width:400px;
+
+    img{
+        width: 100%;
+    }
+    h6{
+        margin-top: 10px;
+        text-align: center;
+    }
+}

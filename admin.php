@@ -188,9 +188,7 @@ include_once("./functions.php");
 
             $('#addImageForm').submit((e)=>{
                 e.preventDefault();
-
                 formData = new FormData(document.querySelector('#addImageForm'));
-
                 fetch('functions.php?action=addpicture',{
                       method: "POST",
                       body:  formData
@@ -211,8 +209,6 @@ include_once("./functions.php");
                             $('.alert-warning').fadeOut();
                         },2000)
                 })
-
-            
             })
         });
 

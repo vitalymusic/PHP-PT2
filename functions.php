@@ -100,25 +100,55 @@ if(isset($_GET["action"])){
 
     }
 
-    if($_GET["action"]=="addpicture" ){
-          $data = $_POST;
+
+    if($_GET["action"]==="addpicture" ){
+        $data = $_POST;
+        if($_FILES['file']['size'] > 0){
+            $uploaddir = 'uploads/';
+            $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+            move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
+
+            $data["imageSrc"] = $_SERVER["HTTP_HOST"] . "/php-pt2/" .  $uploadfile;
+        }
+
 
 
         $stmt = $conn->prepare("INSERT INTO bildes (`name`, `url`) VALUES (?, ?)");
         $stmt->bind_param('ss', $data["imageName"],$data["imageSrc"]);
         $result = $stmt->execute();
 
+
+
         // $result = $conn->query($sql);
 
 
         if($result){
-            echo json_encode(array("status"=> "success"));
+            echo json_encode(["status"=> "success"]);
 
         }else{
             echo $stmt->error;
         }
         $stmt->close();
         
+
+    }
+
+
+    if($_GET["action"]=="showImages"){
+             global $conn;
+
+            $sql = "SELECT * FROM bildes";
+       
+            $result = $conn->query($sql);
+            $data = [];
+            if($result->num_rows>0){
+                  while($row = $result->fetch_assoc()){
+                    $data[] = $row;
+                  }  
+
+
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
 
     }
 
