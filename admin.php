@@ -1,9 +1,9 @@
 <?php
 session_start();
-if ($_SESSION["loggedIn"] == false) {
-    header("location: login.php");
-    exit();
-}
+// if ($_SESSION["loggedIn"] == false) {
+//     header("location: login.php");
+//     exit();
+// }
 
 include_once("./functions.php");
 
@@ -92,6 +92,12 @@ include_once("./functions.php");
                     <label for="imageSrc" class="form-label">Attēla URL</label>
                     <input type="text" class="form-control" name="imageSrc" id="imageSrc"
                         placeholder="Ievadi attēla adresi (URL)">
+                </div>
+
+                 <div class="mb-3">
+                    <label for="file" class="form-label">Attēla fails</label>
+                    <input type="file" class="form-control " name="file" id="file"
+                        placeholder="file">
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Pievienot bildi galerijai</button>

@@ -2,3 +2,15 @@
 2. Iespēja bildes pievienot caur formu caur Admin paneli
 3. Bildes tiek izvadītas lapā (<div class="slider"> .. </div>)
 4. Bilžu izvadei var izmantot arī kādu bibliotēku, piem "https://lokeshdhakar.com/projects/lightbox2/"
+
+
+1. Iespēja bildes pievienot caur formu caur Admin paneli
+    1.1. Izveidot bilžu formu (Bildes nosaukums un faila izvēle un submit), tieši no faila
+    1.2. functions.php realizēt formas apstrādi ar failu ielādi
+    1.3. jauna tabula (Galerija, Nosaukums, url)
+
+2.  Lapā ar Jquery (Javascript) uzrakstīt bilžu izvādi (JSON), Bildes tiek izvadītas lapā (<div class="slider"> .. </div>)
+2.1   functions.php faila realizēt bilžu izvadi JSON formātā
+
+3. Bilžu izvadei var izmantot arī kādu bibliotēku, piem "https://lokeshdhakar.com/projects/lightbox2/"
+
