@@ -28,7 +28,7 @@ include_once("./functions.php");
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-     <!-- SummerNote editor -->
+    <!-- SummerNote editor -->
     <!-- include summernote css/js -->
     <link href="./summernote/summernote.min.css" rel="stylesheet">
     <script src="./summernote/summernote.min.js"></script>
@@ -63,12 +63,12 @@ include_once("./functions.php");
                 while ($row = $result->fetch_assoc()): ?>
                     <?php //$data[] = $row; ?>
                     <tr class="post_div">
-                        <?php $numurs++?>
-                        <td><?=$numurs ?></td>
+                        <?php $numurs++ ?>
+                        <td><?= $numurs ?></td>
                         <td><?= $row["virsraksts"] ?></td>
-                        <td><button class="btn btn-secondary postEditBtn" data-postId="<?=$row["id"]?>">Rediģēt</button></td>
-                        <td><button class="btn btn-danger postDeleteBtn" data-postId="<?=$row["id"]?>">Izdzēst</button></td>
-                    </tr> 
+                        <td><button class="btn btn-secondary postEditBtn" data-postId="<?= $row["id"] ?>">Rediģēt</button></td>
+                        <td><button class="btn btn-danger postDeleteBtn" data-postId="<?= $row["id"] ?>">Izdzēst</button></td>
+                    </tr>
                 <?php endwhile;
             }
             ?>
@@ -78,92 +78,144 @@ include_once("./functions.php");
 
     </div>
 
+    <div class="container">
+        <h2>Bilžu galerija</h2>
+        <div class="col-4 mx-auto">
+            <form action="" class="p-3 border rounded shadow-sm bg-light" id="addImageForm">
+                <div class="mb-3">
+                    <label for="imageName" class="form-label">Attēla nosaukums</label>
+                    <input type="text" class="form-control" name="imageName" id="imageName"
+                        placeholder="Ievadi attēla nosaukumu">
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageSrc" class="form-label">Attēla URL</label>
+                    <input type="text" class="form-control" name="imageSrc" id="imageSrc"
+                        placeholder="Ievadi attēla adresi (URL)">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Pievienot bildi galerijai</button>
+            </form>
+        </div>
+
+    </div>
+
 
     <!-- modal -->
-           <?php include_once("./modal.php")?>
+    <?php include_once("./modal.php") ?>
     <!-- modal -->
 
-       <script>
-            $(".postDeleteBtn").on('click',(e)=>{
-                if(confirm("Tiešām izdzēst?")){
-                     let postId = e.target.dataset.postid;
-                    $.get('./functions.php?action=delete&id='+postId,(resp)=>{
-                        
-                })
-                .then(()=>{
-                    window.location.reload();
-                })  
-                } 
-            })
-            // CRUD -> Create, Read,Update,Delete
-
-            $(document).ready(()=>{
-
-
-                $('#addPostModal').attr('id','editPostModal');
-                $('.modal-title').text('Rediģēt');
-                $('#savePostBtn').attr('id','updatePostBtn');
-
-
-                  $('#postContentInput').summernote();
-                    var noteBar = $('.note-toolbar');
-                    noteBar.find('[data-toggle]').each(function () {
-                        $(this).attr('data-bs-toggle', $(this).attr('data-toggle')).removeAttr('data-toggle');
-                    });
-
-
-
-
-                let editPostModal = new bootstrap.Modal('#editPostModal');
-                let editPostForm = document.querySelector('#editPostModal form');
-                let updatePostBtn = document.querySelector('#updatePostBtn');
-
-
-
-                   $(".postEditBtn").on('click',(e)=>{
-               
-                     let postId = e.target.dataset.postid;
-                    $.get('./functions.php?action=load&id='+postId,(resp)=>{ 
-                        // Servera atbilde ar formas datiem
-                        return resp
-                })
-                .then((resp)=>{
-                    data = JSON.parse(resp); 
-                    $('#postNameInput').val(data.virsraksts);
-                    $('#postContentInput').val(data.saturs);
-                    $('#postNameInput').attr('data-postID',data.id);
-
-                    $('#postContentInput').summernote('reset');
-                    $('#postContentInput').summernote('pasteHTML', data.saturs);
+    <script>
+        $(".postDeleteBtn").on('click', (e) => {
+            if (confirm("Tiešām izdzēst?")) {
+                let postId = e.target.dataset.postid;
+                $.get('./functions.php?action=delete&id=' + postId, (resp) => {
 
                 })
-                .then(()=>{
-                    editPostModal.show();
-                })  
-            })
-             updatePostBtn.onclick = ()=>{
-                data = new FormData(editPostForm);
-                id =  $('#postNameInput').attr('data-postID');
-                data.append('id', id);
-                fetch('functions.php?action=updatePost',{
-                    method:"POST",
-                    body: data
-                }).then(()=>{
-                        editPostForm.reset();
-                        editPostModal.hide();
+                    .then(() => {
+                        window.location.reload();
+                    })
+            }
+        })
+        // CRUD -> Create, Read,Update,Delete
 
-                }).then(()=>{
-                    location.reload();
-                })  
-    }
+        $(document).ready(() => {
+
+
+            $('#addPostModal').attr('id', 'editPostModal');
+            $('.modal-title').text('Rediģēt');
+            $('#savePostBtn').attr('id', 'updatePostBtn');
+
+
+            $('#postContentInput').summernote();
+            var noteBar = $('.note-toolbar');
+            noteBar.find('[data-toggle]').each(function () {
+                $(this).attr('data-bs-toggle', $(this).attr('data-toggle')).removeAttr('data-toggle');
             });
 
 
-           
+
+
+            let editPostModal = new bootstrap.Modal('#editPostModal');
+            let editPostForm = document.querySelector('#editPostModal form');
+            let updatePostBtn = document.querySelector('#updatePostBtn');
 
 
 
-       </script>     
+            $(".postEditBtn").on('click', (e) => {
+
+                let postId = e.target.dataset.postid;
+                $.get('./functions.php?action=load&id=' + postId, (resp) => {
+                    // Servera atbilde ar formas datiem
+                    return resp
+                })
+                    .then((resp) => {
+                        data = JSON.parse(resp);
+                        $('#postNameInput').val(data.virsraksts);
+                        $('#postContentInput').val(data.saturs);
+                        $('#postNameInput').attr('data-postID', data.id);
+
+                        $('#postContentInput').summernote('reset');
+                        $('#postContentInput').summernote('pasteHTML', data.saturs);
+
+                    })
+                    .then(() => {
+                        editPostModal.show();
+                    })
+            })
+            updatePostBtn.onclick = () => {
+                data = new FormData(editPostForm);
+                id = $('#postNameInput').attr('data-postID');
+                data.append('id', id);
+                fetch('functions.php?action=updatePost', {
+                    method: "POST",
+                    body: data
+                }).then(() => {
+                    editPostForm.reset();
+                    editPostModal.hide();
+
+                }).then(() => {
+                    location.reload();
+                })
+            }
+
+
+            $('#addImageForm').submit((e)=>{
+                e.preventDefault();
+
+                formData = new FormData(document.querySelector('#addImageForm'));
+
+                fetch('functions.php?action=addpicture',{
+                      method: "POST",
+                      body:  formData
+                }).then((resp)=>{
+                   return data = resp.json();
+                }).then((data)=>{
+                     if(data.status=='success'){
+                        $('body').prepend(
+                            `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                Bilde pievienota!!!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
+                        );
+                     }
+                      $('#addImageForm')[0].reset();
+                }).then(()=>{
+                    setTimeout(()=>{
+                            $('.alert-warning').fadeOut();
+                        },2000)
+                })
+
+            
+            })
+        });
+
+
+
+
+
+
+    </script>
 </body>
 
 </html>

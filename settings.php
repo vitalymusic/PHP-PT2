@@ -6,7 +6,7 @@
 
     $result = sha1($password);
 
-    echo strlen($title);
+    // echo strlen($title);
     $title = "Mana jaunā lapa ar PHP!";
 
 

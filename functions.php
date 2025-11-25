@@ -100,6 +100,28 @@ if(isset($_GET["action"])){
 
     }
 
+    if($_GET["action"]=="addpicture" ){
+          $data = $_POST;
+
+
+        $stmt = $conn->prepare("INSERT INTO bildes (`name`, `url`) VALUES (?, ?)");
+        $stmt->bind_param('ss', $data["imageName"],$data["imageSrc"]);
+        $result = $stmt->execute();
+
+        // $result = $conn->query($sql);
+
+
+        if($result){
+            echo json_encode(array("status"=> "success"));
+
+        }else{
+            echo $stmt->error;
+        }
+        $stmt->close();
+        
+
+    }
+
 
 }
 
@@ -111,7 +133,12 @@ function get_posts(){
    return $conn->query($sql);
 }
 
+function get_pictures(){
+    global $conn;
 
+    $sql = "SELECT * FROM bildes";
+   return $conn->query($sql);
+}
 
 
 
