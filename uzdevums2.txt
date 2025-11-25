@@ -1,0 +1,7 @@
+1. Pievienot Jquery bibliotēku:  "https://lokeshdhakar.com/projects/lightbox2/"
+2. admin panelī reālizēt bilžu rādīšanu tabulas veidā 
+    (izmantot jau esošo ceļu: http://localhost/php-pt2/functions.php?action=showImages)
+2. admin panelī reālizēt bilžu izdzēšanu 
+    2.1. izdzēst failu https://www.php.net/manual/en/function.unlink.php
+    2.2. izdzēst tabulas ierakstu pēc id; 
+3. Functions.php failā reālizēt bildes un faila dzēšanas funkciju (action="deleteImage&id=2")    

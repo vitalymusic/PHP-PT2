@@ -9,10 +9,11 @@ $(document).ready(()=>{
         data.forEach((item)=>{
                html += `
                 <div class="picture">
-                    <img src="${item.url}" alt="${item.id}">
+                    <a href="${item.url}" data-lightbox="images" data-title="${item.name}">
+                        <img src="${item.url}" alt="${item.name}">
+                    </a>
                     <h6>${item.name}</h6>
                 </div>
-               
                `; 
         })
         $('.gallery').html(html);

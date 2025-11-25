@@ -18,6 +18,9 @@
     <script src="./summernote/summernote.min.js"></script>
    
    
+    <link href="./lightbox/lightbox.min.css" rel="stylesheet">
+    <script src="./lightbox/lightbox.min.js"></script>
+
    
    <link rel="stylesheet" href="style.css" />
 
