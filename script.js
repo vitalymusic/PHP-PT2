@@ -19,9 +19,4 @@ $(document).ready(()=>{
         $('.gallery').html(html);
     })
 
-
-
-
-
-
 })
