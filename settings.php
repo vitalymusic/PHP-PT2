@@ -9,6 +9,10 @@
     // echo strlen($title);
     $title = "Mana jaunā lapa ar PHP!";
 
+    // Konstante
+
+    define('APP_URL',"http://localhost/php-pt2/");
+
 
 
 

@@ -1,4 +1,6 @@
-<?php include_once("./db.php");
+<?php 
+include_once("./db.php");
+include_once("./settings.php");
 
 
 if(isset($_GET["action"])){
@@ -108,7 +110,7 @@ if(isset($_GET["action"])){
             $uploadfile = $uploaddir . basename($_FILES['file']['name']);
             move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
 
-            $data["imageSrc"] = $_SERVER["HTTP_HOST"] . "/php-pt2/" .  $uploadfile;
+            $data["imageSrc"] = APP_URL  .  $uploadfile;
         }
 
 
