@@ -264,7 +264,7 @@ include_once("./functions.php");
                                 window.location.reload(true);
 
                                 if(localStorage.getItem("page_reload")==true){
-                                        $('#profile-tab').trigger("click");
+                                        $('#profile-tab').click();
                                         localStorage.removeItemItem("page_reload");
                                 }
                                 
