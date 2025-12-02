@@ -95,7 +95,7 @@ include_once("./functions.php");
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                 tabindex="0">
-                <h3>Bilžu pievienošana</h3>
+                <h3 class="text-center my-3">Bilžu pievienošana</h3>
                 <div class="col-4 mx-auto">
                     <form action="" class="p-3 border rounded shadow-sm bg-light" id="addImageForm">
                         <div class="mb-3">
@@ -120,8 +120,10 @@ include_once("./functions.php");
                 </div>
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                <h3>Dzēst bildes</h3>
-                
+                <h3 class="text-center my-3">Dzēst bildes</h3>
+                <div class="image_gallery d-flex justify-content-center flex-wrap gap-5">
+
+                </div>
 
             </div>
         </div>
@@ -234,6 +236,28 @@ include_once("./functions.php");
                     }, 2000)
                 })
             })
+
+
+
+
+            // Izvadam bildes no db
+            // .image_gallery
+            // functions.php?action="showimages"
+
+
+            $.getJSON('functions.php?action=showImages',(data)=>{
+                data.forEach((item)=>{
+                    $('.image_gallery').append(`
+                        <div class="image d-flex justify-content-center flex-column gap-1">
+                            <img class="img-thumbnail d-block" style="width:150px;height:150px;" src="${item.url}">     
+                            <button class="btn btn-danger" data-id="${item.id}">Dzēst</button>
+                        </div>
+                    
+                    `);
+                })
+
+            })
+
         });
 
 
