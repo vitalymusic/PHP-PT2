@@ -155,6 +155,11 @@ if(isset($_GET["action"])){
     }
 
 
+    if($_GET["action"] == "delImageByID" && isset($_GET["id"])){
+            delImagesByID($_GET["id"]);
+    }
+
+
 }
 
 
@@ -170,6 +175,26 @@ function get_pictures(){
 
     $sql = "SELECT * FROM bildes";
    return $conn->query($sql);
+}
+
+
+// bilžu dzēšana
+
+function delImagesByID($id){
+    global $conn;
+    $id = $conn->escape_string($id);
+    $sql = "DELETE * FROM bildes WHERE id=$id" ;
+
+    try{
+        $conn->query($sql);
+        echo json_encode(["success"=>true]);
+    }
+    catch (Exception $error){
+        echo json_encode(["error"=>$error->getMessage()]);
+    }
+  
+
+
 }
 
 
