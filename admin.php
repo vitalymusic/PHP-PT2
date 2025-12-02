@@ -247,7 +247,7 @@ include_once("./functions.php");
                     $('.image_gallery').append(`
                         <div class="image d-flex justify-content-center flex-column gap-1">
                             <img class="img-thumbnail d-block" style="width:150px;height:150px;" src="${item.url}">     
-                            <button class="btn btn-danger delPictureBtn" data-id="${item.id}">Dzēst</button>
+                            <button class="btn btn-danger delPictureBtn" data-id="${item.id}" data-url="${item.url}">Dzēst</button>
                         </div>
                     
                     `);
@@ -257,9 +257,9 @@ include_once("./functions.php");
                 $('.delPictureBtn').on("click",(e)=>{
                     if(confirm("Tiešām izdzēst?")){
                         id = e.target.dataset.id;
-                        $.getJSON('functions.php?action=delImageByID&id='+id,(data)=>{
+                        url = e.target.dataset.url;
+                        $.getJSON('functions.php?action=delImageByID&id='+id+'&url='+url,(data)=>{
                             if(data.success==true){
-
                                 localStorage.setItem("page_reload",true);
                                 window.location.reload(true);
   

@@ -156,7 +156,7 @@ if(isset($_GET["action"])){
 
 
     if($_GET["action"] == "delImageByID" && isset($_GET["id"])){
-            delImagesByID($_GET["id"]);
+            delImagesByID($_GET["id"],$_GET["url"]);
     }
 
 
@@ -180,13 +180,15 @@ function get_pictures(){
 
 // bilžu dzēšana
 
-function delImagesByID($id){
+function delImagesByID($id,$filename){
     global $conn;
     $id = $conn->escape_string($id);
+    $filename = $conn->escape_string($filename);
     $sql = "DELETE FROM bildes WHERE id=$id";
 
     try{
         $conn->query($sql);
+        delImageByFileName($filename);
         echo json_encode(["success"=>true]);
     }
     catch (Exception $error){
@@ -194,6 +196,29 @@ function delImagesByID($id){
     }
 
 }
+
+function delImageByFileName($filename){
+    // http://localhost/php-pt2/uploads/images.jpeg
+
+    try{
+        
+        $imageFileName = explode('/',$filename);
+        $fileName = $imageFileName[4] . '/' . $imageFileName[5];
+        if(file_exists( $fileName)){
+            unlink( $fileName);
+        }
+        // echo json_encode(["success"=>true]);
+    }
+    catch(Exception $error){
+        echo json_encode(["error"=>$error->getMessage()]);
+    }
+
+   
+
+    // var_dump( $imageFileName);
+
+}
+
 
 
 
