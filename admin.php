@@ -80,29 +80,53 @@ include_once("./functions.php");
 
     <div class="container">
         <h2>Bilžu galerija</h2>
-        <div class="col-4 mx-auto">
-            <form action="" class="p-3 border rounded shadow-sm bg-light" id="addImageForm">
-                <div class="mb-3">
-                    <label for="imageName" class="form-label">Attēla nosaukums</label>
-                    <input type="text" class="form-control" name="imageName" id="imageName"
-                        placeholder="Ievadi attēla nosaukumu">
-                </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Pievienot jaunas
+                    bildes</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Bilžu
+                    noņemšana</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <h3>Bilžu pievienošana</h3>
+                <div class="col-4 mx-auto">
+                    <form action="" class="p-3 border rounded shadow-sm bg-light" id="addImageForm">
+                        <div class="mb-3">
+                            <label for="imageName" class="form-label">Attēla nosaukums</label>
+                            <input type="text" class="form-control" name="imageName" id="imageName"
+                                placeholder="Ievadi attēla nosaukumu">
+                        </div>
 
-                <div class="mb-3">
-                    <label for="imageSrc" class="form-label">Attēla URL</label>
-                    <input type="text" class="form-control" name="imageSrc" id="imageSrc"
-                        placeholder="Ievadi attēla adresi (URL)">
-                </div>
+                        <div class="mb-3">
+                            <label for="imageSrc" class="form-label">Attēla URL</label>
+                            <input type="text" class="form-control" name="imageSrc" id="imageSrc"
+                                placeholder="Ievadi attēla adresi (URL)">
+                        </div>
 
-                 <div class="mb-3">
-                    <label for="file" class="form-label">Attēla fails</label>
-                    <input type="file" class="form-control " name="file" id="file"
-                        placeholder="file">
-                </div>
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Attēla fails</label>
+                            <input type="file" class="form-control " name="file" id="file" placeholder="file">
+                        </div>
 
-                <button type="submit" class="btn btn-primary w-100">Pievienot bildi galerijai</button>
-            </form>
+                        <button type="submit" class="btn btn-primary w-100">Pievienot bildi galerijai</button>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <h3>Dzēst bildes</h3>
+                
+
+            </div>
         </div>
+
+
 
     </div>
 
@@ -186,28 +210,28 @@ include_once("./functions.php");
             }
 
 
-            $('#addImageForm').submit((e)=>{
+            $('#addImageForm').submit((e) => {
                 e.preventDefault();
                 formData = new FormData(document.querySelector('#addImageForm'));
-                fetch('functions.php?action=addpicture',{
-                      method: "POST",
-                      body:  formData
-                }).then((resp)=>{
-                   return data = resp.json();
-                }).then((data)=>{
-                     if(data.status=='success'){
+                fetch('functions.php?action=addpicture', {
+                    method: "POST",
+                    body: formData
+                }).then((resp) => {
+                    return data = resp.json();
+                }).then((data) => {
+                    if (data.status == 'success') {
                         $('body').prepend(
                             `<div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 Bilde pievienota!!!
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>`
                         );
-                     }
-                      $('#addImageForm')[0].reset();
-                }).then(()=>{
-                    setTimeout(()=>{
-                            $('.alert-warning').fadeOut();
-                        },2000)
+                    }
+                    $('#addImageForm')[0].reset();
+                }).then(() => {
+                    setTimeout(() => {
+                        $('.alert-warning').fadeOut();
+                    }, 2000)
                 })
             })
         });
