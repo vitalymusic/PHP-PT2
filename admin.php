@@ -259,8 +259,15 @@ include_once("./functions.php");
                         id = e.target.dataset.id;
                         $.getJSON('functions.php?action=delImageByID&id='+id,(data)=>{
                             if(data.success==true){
-                                window.location.reload();
-                                $('#profile-tab').click();
+
+                                localStorage.setItem("page_reload",true);
+                                window.location.reload(true);
+
+                                if(localStorage.getItem("page_reload")==true){
+                                        $('#profile-tab').trigger("click");
+                                        localStorage.removeItemItem("page_reload");
+                                }
+                                
                             }
                         })
                   }
