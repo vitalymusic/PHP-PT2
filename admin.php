@@ -255,12 +255,18 @@ include_once("./functions.php");
 
             }).then(()=>{
                 $('.delPictureBtn').on("click",(e)=>{
-                    id = e.target.dataset.id;
-                    $.getJSON('functions.php?action=delImageByID&id='+id,(data)=>{
-                        console.log(data);
-                    })
-                })
+                    if(confirm("Tiešām izdzēst?")){
+                        id = e.target.dataset.id;
+                        $.getJSON('functions.php?action=delImageByID&id='+id,(data)=>{
+                            if(data.success==true){
+                                window.location.reload();
+                                $('#profile-tab').click();
+                            }
+                        })
+                  }
 
+                })
+        
             })
 
         });

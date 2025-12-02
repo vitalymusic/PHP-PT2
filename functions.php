@@ -183,7 +183,7 @@ function get_pictures(){
 function delImagesByID($id){
     global $conn;
     $id = $conn->escape_string($id);
-    $sql = "DELETE * FROM bildes WHERE id=$id" ;
+    $sql = "DELETE FROM bildes WHERE id=$id";
 
     try{
         $conn->query($sql);
@@ -192,8 +192,6 @@ function delImagesByID($id){
     catch (Exception $error){
         echo json_encode(["error"=>$error->getMessage()]);
     }
-  
-
 
 }
 
