@@ -262,19 +262,20 @@ include_once("./functions.php");
 
                                 localStorage.setItem("page_reload",true);
                                 window.location.reload(true);
-
-                                if(localStorage.getItem("page_reload")==true){
-                                        $('#profile-tab').click();
-                                        localStorage.removeItemItem("page_reload");
-                                }
-                                
+  
                             }
                         })
                   }
 
                 })
-        
+            }).then(()=>{
+                     if(localStorage.getItem("page_reload")=="true"){
+                        $('#profile-tab').click();
+                    localStorage.removeItem("page_reload");
+                }
             })
+
+           
 
         });
 
