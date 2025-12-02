@@ -127,9 +127,6 @@ include_once("./functions.php");
 
             </div>
         </div>
-
-
-
     </div>
 
 
@@ -250,10 +247,18 @@ include_once("./functions.php");
                     $('.image_gallery').append(`
                         <div class="image d-flex justify-content-center flex-column gap-1">
                             <img class="img-thumbnail d-block" style="width:150px;height:150px;" src="${item.url}">     
-                            <button class="btn btn-danger" data-id="${item.id}">Dzēst</button>
+                            <button class="btn btn-danger delPictureBtn" data-id="${item.id}">Dzēst</button>
                         </div>
                     
                     `);
+                })
+
+            }).then(()=>{
+                $('.delPictureBtn').on("click",(e)=>{
+                    id = e.target.dataset.id;
+                    $.getJSON('functions.php?action=delImageByID&id='+id,(data)=>{
+                        console.log(data);
+                    })
                 })
 
             })
