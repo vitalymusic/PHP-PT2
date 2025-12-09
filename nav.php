@@ -20,7 +20,7 @@
         <li class="nav-item">
           <a href="index.php?page=sec4" class="nav-link <?= $page == 'sec4' ? 'active' : '' ?>">Bilžu galerija</a>
         </li> -->
-        
+
   
 
         
