@@ -29,11 +29,24 @@ $(document).ready(()=>{
         menu.forEach((item)=>{
             $('ul.navbar-nav').append(`
                   <li class="nav-item">
-                        <a href="sections.php?page=${item.page_seo_url}" class="nav-link">${item.page_name}</a>
+                        <a href="functions.php?action=showSection&page=${item.page_seo_url}" class="nav-link">${item.page_name}</a>
                    </li>  
             `);
         })
 
+    })
+    .then(()=>{
+        $('ul.navbar-nav a').on("click", (e)=>{
+            e.preventDefault();
+            $.get(e.target.href,(resp)=>{resp})
+                .then((html)=>{
+                      html = JSON.parse(html);
+                      $('.html_content').html(html);
+                })
+        })
+
+    }).then(()=>{
+        $('ul.navbar-nav a')[0].click();
     })
 
 })

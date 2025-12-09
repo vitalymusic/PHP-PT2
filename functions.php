@@ -166,6 +166,10 @@ if(isset($_GET["action"])){
             echo showMenu();
      }
 
+     if($_GET["action"]== "showSection"){
+        echo showContentBySEO($_GET["page"]);
+     }
+
 
 }
 
@@ -238,7 +242,7 @@ function showContentBySEO($seo){
         catch (Exception $error){
             echo json_encode(["error"=>$error->getMessage()]);
         }
-    return $html["content"];
+    return json_encode($html["content"],JSON_UNESCAPED_UNICODE);
 
 }
 

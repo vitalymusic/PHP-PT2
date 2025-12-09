@@ -14,7 +14,10 @@ require_once("./functions.php");
 
 
 <!-- Saturs -->
-<?php echo showContentBySEO($_GET["page"])?>
+ <div class="html_content">
+    
+ </div>
+<!-- <?php //echo showContentBySEO($_GET["page"])?> -->
 
 
 
