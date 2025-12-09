@@ -212,9 +212,7 @@ function delImageByFileName($filename){
     catch(Exception $error){
         echo json_encode(["error"=>$error->getMessage()]);
     }
-
-   
-
+    
     // var_dump( $imageFileName);
 
 }
