@@ -29,7 +29,7 @@ $(document).ready(()=>{
         menu.forEach((item)=>{
             $('ul.navbar-nav').append(`
                   <li class="nav-item">
-                        <a href="functions.php?action=showSection&page=${item.page_seo_url}" class="nav-link">${item.page_name}</a>
+                        <a href="functions.php?action=showSection&page=${item.page_seo_url}" data-page="${item.page_seo_url}" class="nav-link">${item.page_name}</a>
                    </li>  
             `);
         })
@@ -38,6 +38,9 @@ $(document).ready(()=>{
     .then(()=>{
         $('ul.navbar-nav a').on("click", (e)=>{
             e.preventDefault();
+            // window.preventDefault();
+            window.location.hash = e.target.dataset.page;
+            // history.pushState({}, '', e.target.dataset.page);
             $.get(e.target.href,(resp)=>{resp})
                 .then((html)=>{
                       html = JSON.parse(html);
