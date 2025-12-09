@@ -8,7 +8,7 @@
 
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="index.php?page=sec1" class="nav-link <?= $page == 'sec1' ? 'active' : '' ?>">Saite 1</a>
         </li>
         <li class="nav-item">
@@ -19,7 +19,11 @@
         </li>
         <li class="nav-item">
           <a href="index.php?page=sec4" class="nav-link <?= $page == 'sec4' ? 'active' : '' ?>">Bilžu galerija</a>
-        </li>
+        </li> -->
+        
+  
+
+        
       </ul>
     </div>
   </div>

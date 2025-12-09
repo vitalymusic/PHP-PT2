@@ -8,6 +8,11 @@ require_once("./settings.php");
 <?php require_once("./head.php"); ?>
 <?php
 
+
+
+
+
+
 if (!isset($_GET["page"])) {
     header("location:?page=sec1");
 }

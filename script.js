@@ -19,4 +19,21 @@ $(document).ready(()=>{
         $('.gallery').html(html);
     })
 
+
+
+    // navigācija
+
+    $.get('http://localhost/php-pt2/functions.php?action=showMenu', resp=>{resp})
+    .then((menu)=>{
+        menu  = JSON.parse(menu);
+        menu.forEach((item)=>{
+            $('ul.navbar-nav').append(`
+                  <li class="nav-item">
+                        <a href="sections.php?page=${item.page_seo_url}" class="nav-link">${item.page_name}</a>
+                   </li>  
+            `);
+        })
+
+    })
+
 })

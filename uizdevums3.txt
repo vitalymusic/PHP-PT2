@@ -1,0 +1,4 @@
+1. Izveidot tabulu datubāzē
+Izveidot tabulu sections ar laukiem:
+id (INT, PK, AI)	title (VARCHAR 255)	description (TEXT)
+Ievadi vismaz 5 testa ierakstus (piem., “Par mums”, “Kontakti”, “Galerija”, “Pakalpojumi”, “Blogs”).

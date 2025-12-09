@@ -160,6 +160,13 @@ if(isset($_GET["action"])){
     }
 
 
+
+
+     if($_GET["action"] == "showMenu"){
+            echo showMenu();
+     }
+
+
 }
 
 
@@ -216,6 +223,43 @@ function delImageByFileName($filename){
     // var_dump( $imageFileName);
 
 }
+
+
+
+function showContentBySEO($seo){
+
+    // Atgriež STRING ar (HTML)
+     global $conn;
+        $sql = "SELECT `page_content` as `content` FROM `sections` WHERE `page_seo_url`= '{$conn->escape_string($seo)}'";
+        try{
+            $result = $conn->query($sql);
+            $html = $result->fetch_assoc();
+        }
+        catch (Exception $error){
+            echo json_encode(["error"=>$error->getMessage()]);
+        }
+    return $html["content"];
+
+}
+
+function showMenu(){
+     global $conn;
+
+    // $sql = "SELECT `page_name` as `name`,`page_seo_url` as `seo` FROM `sections`";
+    $sql = "SELECT `page_name`,`page_seo_url` FROM `sections`";
+    $result = $conn->query($sql);
+    $sections = [];
+
+    if($result->num_rows>0){
+        while($row = $result->fetch_assoc()){
+            $sections[] = $row;
+        }
+
+    }
+    // Atgriež JSON no kura izveidot izēlni
+    return json_encode($sections,JSON_UNESCAPED_UNICODE);
+}
+
 
 
 
